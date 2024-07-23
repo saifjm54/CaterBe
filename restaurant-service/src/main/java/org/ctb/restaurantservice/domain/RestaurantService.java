@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -23,6 +24,10 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
         restaurantDomainEventPublisher.publish(restaurant, Collections.singletonList(new RestaurantCreated(request.getName(),request.getAddress(),request.getMenu())));
         return restaurant;
+    }
+
+    public Optional<Restaurant> findById(long restaurantId) {
+        return restaurantRepository.findById(restaurantId);
     }
 
 
