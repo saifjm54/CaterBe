@@ -90,6 +90,7 @@
 			<version>5.12.0</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>io.eventuate.tram.core</groupId>
 			<artifactId>eventuate-tram-aggregate-domain-events</artifactId>

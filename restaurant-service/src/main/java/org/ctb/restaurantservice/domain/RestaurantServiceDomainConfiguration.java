@@ -3,6 +3,7 @@ package org.ctb.restaurantservice.domain;
 import io.eventuate.tram.events.common.DomainEvent;
 import io.eventuate.tram.events.publisher.DomainEventPublisher;
 import io.eventuate.tram.spring.events.publisher.TramEventsPublisherConfiguration;
+import org.ctb.common.CommonConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,7 @@ import java.util.Map;
 @EnableJpaRepositories
 @EnableTransactionManagement
 @EntityScan
-@Import({TramEventsPublisherConfiguration.class,CommonConfiguration.class})
+@Import({TramEventsPublisherConfiguration.class, CommonConfiguration.class})
 public class RestaurantServiceDomainConfiguration {
 
     @Bean

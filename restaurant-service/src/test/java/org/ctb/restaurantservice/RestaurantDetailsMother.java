@@ -5,6 +5,7 @@ import org.ctb.common.Money;
 import org.ctb.restaurantservice.domain.MenuItem;
 import org.ctb.restaurantservice.domain.RestaurantMenu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantDetailsMother {
@@ -17,5 +18,13 @@ public class RestaurantDetailsMother {
     public static final Address RESTAURANT_ADDRESS = new Address("1 Main Street", "Unit 99", "Oakland", "CA", "94611");
 
     public static MenuItem CHICKEN_VINDALOO_MENU_ITEM = new MenuItem(CHICKEN_VINDALOO_MENU_ITEM_ID, CHICKEN_VINDALOO, CHICKEN_VINDALOO_PRICE);
+
+    public static RestaurantMenu getRestaurantMenu() {
+        RestaurantMenu restaurantMenu = new RestaurantMenu();
+        List<MenuItem> menuItemList = new ArrayList<>();
+        menuItemList.add(RestaurantDetailsMother.CHICKEN_VINDALOO_MENU_ITEM);
+        restaurantMenu.setMenuItems(menuItemList);
+        return restaurantMenu;
+    }
 
 }

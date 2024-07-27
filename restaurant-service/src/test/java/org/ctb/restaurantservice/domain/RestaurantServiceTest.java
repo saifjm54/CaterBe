@@ -20,7 +20,6 @@ public class RestaurantServiceTest {
     private RestaurantRepository restaurantRepository;
     private RestaurantDomainEventPublisher domainEventPublisher;
 
-    public static RestaurantMenu menu;
 
 
     @BeforeEach
@@ -28,10 +27,6 @@ public class RestaurantServiceTest {
         restaurantRepository = mock(RestaurantRepository.class);
         domainEventPublisher = mock(RestaurantDomainEventPublisher.class);
         restaurantService = new RestaurantService(restaurantRepository,domainEventPublisher);
-        menu = new RestaurantMenu();
-        List<MenuItem> menuItemList = new ArrayList<>();
-        menuItemList.add(RestaurantDetailsMother.CHICKEN_VINDALOO_MENU_ITEM);
-        menu.setMenuItems(menuItemList);
     }
 
     @Test
@@ -41,26 +36,26 @@ public class RestaurantServiceTest {
             restaurant.setId(RestaurantDetailsMother.AJANTA_ID);
             return  restaurant;
         });
-        CreateRestaurantRequest request = new CreateRestaurantRequest(RestaurantDetailsMother.AJANTA_RESTAURANT_NAME,RestaurantDetailsMother.RESTAURANT_ADDRESS,menu);
+        CreateRestaurantRequest request = new CreateRestaurantRequest(RestaurantDetailsMother.AJANTA_RESTAURANT_NAME,RestaurantDetailsMother.RESTAURANT_ADDRESS,RestaurantDetailsMother.getRestaurantMenu());
 
         Restaurant restaurant = restaurantService.create(request);
 
         verify(restaurantRepository).save(same(restaurant));
-        verify(domainEventPublisher).publish(restaurant, Collections.singletonList(new RestaurantCreated(RestaurantDetailsMother.AJANTA_RESTAURANT_NAME,RestaurantDetailsMother.RESTAURANT_ADDRESS,menu)));
+        verify(domainEventPublisher).publish(restaurant, Collections.singletonList(new RestaurantCreated(RestaurantDetailsMother.AJANTA_RESTAURANT_NAME,RestaurantDetailsMother.RESTAURANT_ADDRESS,RestaurantDetailsMother.getRestaurantMenu())));
     }
 
     @Test
     public void shouldReturnRestaurantWithAnExistingId(){
 
         when(restaurantRepository.findById(RestaurantDetailsMother.AJANTA_ID)).thenReturn(
-                Optional.of(new Restaurant(RestaurantDetailsMother.AJANTA_ID,RestaurantDetailsMother.AJANTA_RESTAURANT_NAME,menu))
+                Optional.of(new Restaurant(RestaurantDetailsMother.AJANTA_ID,RestaurantDetailsMother.AJANTA_RESTAURANT_NAME,RestaurantDetailsMother.getRestaurantMenu()))
         );
 
         Optional<Restaurant> restaurant = restaurantService.findById(RestaurantDetailsMother.AJANTA_ID);
 
         assertEquals(RestaurantDetailsMother.AJANTA_ID, restaurant.get().getId());
         assertEquals(RestaurantDetailsMother.AJANTA_RESTAURANT_NAME,restaurant.get().getName());
-        assertEquals(menu,restaurant.get().getMenu());
+        assertEquals(RestaurantDetailsMother.getRestaurantMenu(),restaurant.get().getMenu());
 
 
     }
