@@ -103,6 +103,20 @@ public class RestaurantControllerTest {
         assertEquals(expected,content);
     }
 
+    @Test
+    public void shouldReturnNotFoundException_404_HTTP_STATUS_When_Restaurant_Does_Not_Exisits() throws Exception {
+        when(
+                restaurantService.findById(RestaurantDetailsMother.AJANTA_ID)
+        ).thenReturn(Optional.empty());
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(uri+"/{id}", RestaurantDetailsMother.AJANTA_ID)).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(404,status);
+
+
+
+    }
+
 
 
 }
