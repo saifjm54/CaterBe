@@ -51,6 +51,12 @@
 
 		<dependency>
 			<groupId>io.eventuate.tram.core</groupId>
+			<artifactId>eventuate-tram-spring-commands</artifactId>
+			<version>0.34.0.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.eventuate.tram.core</groupId>
 			<artifactId>eventuate-tram-spring-jdbc-kafka</artifactId>
 			<version>0.34.0.RELEASE</version>
 		</dependency>
@@ -60,6 +66,12 @@
 			<artifactId>eventuate-tram-spring-events</artifactId>
 			<version>0.34.0.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>io.eventuate.tram.core</groupId>
+			<artifactId>eventuate-tram-spring-consumer-jdbc</artifactId>
+			<version>0.34.0.RELEASE</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>io.eventuate.tram.core</groupId>
@@ -95,6 +107,11 @@
 			<groupId>io.eventuate.tram.core</groupId>
 			<artifactId>eventuate-tram-aggregate-domain-events</artifactId>
 			<version>0.29.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
